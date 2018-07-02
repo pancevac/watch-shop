@@ -6,9 +6,14 @@
     <!--  Side Nav  -->
     <div class="nav-side-menu">
         <div class="menu-list">
-            <h6>Categories</h6>
+            <h6>Brands</h6>
             <ul id="menu-content" class="menu-content collapse out">
-                <!-- Single Item -->
+                @foreach($side_brands as $brand)
+                    <li class="collapsed">
+                        <a href="#">{{ $brand->name }}</a>
+                    </li>
+                @endforeach
+                {{--<!-- Single Item -->
                 <li data-toggle="collapse" data-target="#women" class="collapsed active">
                     <a href="#">Woman wear <span class="arrow"></span></a>
                     <ul class="sub-menu collapse" id="women">
@@ -61,7 +66,7 @@
                         <li><a href="#">Footwear 2</a></li>
                         <li><a href="#">Footwear 3</a></li>
                     </ul>
-                </li>
+                </li>--}}
             </ul>
         </div>
     </div>
