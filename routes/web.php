@@ -18,5 +18,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 
+Route::post('/comment/{id}', 'CommentsController@comment')->name('comment');
+
 Route::get('{brand}/{slug}', 'PagesController@show')->name('pages.show');
 Route::get('/', 'PagesController@index')->name('/');

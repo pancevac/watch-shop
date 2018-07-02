@@ -12,7 +12,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'description' => $faker->sentence,
         'details' => $faker->text,
         'price' => rand(200, 300),
-        'image' => $faker->imageUrl(),
+        'image' => '/img/sat.jpg',
         'brand_id' => rand(1, 7),
         'featured' => rand(0, 1),
     ];
