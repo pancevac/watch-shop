@@ -205,7 +205,7 @@
                                 <div class="product-img">
                                     <img src="{{ asset($product->image) }}" alt="">
                                     <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                                        <a href="#" data-toggle="modal" data-id="{{ $product->id }}" data-target="#quickview"><i class="ti-plus"></i></a>
                                     </div>
                                 </div>
                                 <!-- Product Description -->
@@ -223,6 +223,35 @@
             </div>
         </div>
     </section>
+
+    @endsection
+
+@section('appendJs')
+
+    <script>
+        $(document).ready(function () {
+            $('#quickview').on('show.bs.modal', function (e) {
+                // Get button instance that triggered this event
+                var button = $(e.relatedTarget);
+                // Get product ID from data-id
+                var id = button.data('id');
+                var baseUrl = '{{ asset('/') }}';
+                if (id) {
+                    $.ajax({
+                        method: 'GET',
+                        url: '{{ url('product') }}/' + id,
+                        success: function (product) {
+                            $('#modal-image').attr('src', baseUrl + product.image);
+                            $('#modal-title').text(product.name);
+                            $('#modal-description').text(product.description);
+                            $('#modal-price').text('$'+ product.price);
+                            $('#modal-read-more').attr('href', baseUrl + product.brand.slug + '/' + product.slug);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
     @endsection
 

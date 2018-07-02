@@ -20,5 +20,6 @@ Route::get('/shop', 'ShopController@index')->name('shop.index');
 
 Route::post('/comment/{id}', 'CommentsController@comment')->name('comment');
 
+Route::get('product/{id}', 'PagesController@product')->name('pages.product');
 Route::get('{brand}/{slug}', 'PagesController@show')->name('pages.show');
 Route::get('/', 'PagesController@index')->name('/');

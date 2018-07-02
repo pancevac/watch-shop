@@ -10,12 +10,12 @@
                         <div class="row">
                             <div class="col-12 col-lg-5">
                                 <div class="quickview_pro_img">
-                                    <img src="img/product-img/product-1.jpg" alt="">
+                                    <img id="modal-image" src="img/product-img/product-1.jpg" alt="">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-7">
                                 <div class="quickview_pro_des">
-                                    <h4 class="title">Boutique Silk Dress</h4>
+                                    <h4 class="title" id="modal-title"></h4>
                                     <div class="top_seller_product_rating mb-15">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -23,9 +23,9 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
-                                    <h5 class="price">$120.99 <span>$130</span></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia expedita quibusdam aspernatur, sapiente consectetur accusantium perspiciatis praesentium eligendi, in fugiat?</p>
-                                    <a href="#">View Full Product Details</a>
+                                    <h5 class="price" id="modal-price">$120.99 <span>$130</span></h5>
+                                    <p id="modal-description"></p>
+                                    <a href="#" id="modal-read-more">View Full Product Details</a>
                                 </div>
                                 <!-- Add to Cart Form -->
                                 <form class="cart" method="post">

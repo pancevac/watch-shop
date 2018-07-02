@@ -29,4 +29,17 @@ class PagesController extends Controller
 
         return view('pages.product', compact('product', 'relatedProducts'));
     }
+
+    public function product(Request $request, $id)
+    {
+        if (!$request->ajax()) {
+            return abort(404);
+        }
+        $product = Product::with(['brand'])->where('id', $id)->first();
+        if (empty($product)) {
+            return response()->json(false);
+        }
+        $product->rating = $product->averageRate();
+        return response()->json($product);
+    }
 }
