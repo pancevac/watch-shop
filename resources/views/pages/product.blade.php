@@ -214,8 +214,14 @@
                                     <h4 class="product-price">${{ $product->price }}</h4>
                                     <p>{{ $product->name }}</p>
                                     {{--<h4 class="title"><a href="#">{{ ucfirst($product->brand->name) }}</a></h4>--}}
+                                    <form id="formAddToCart" style="display: none;" method="POST" action="{{ route('cart.create') }}">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="addtocart" value="{{ $product->id }}">
+                                        {{ csrf_field() }}
+                                    </form>
                                     <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                                    <a href="#" class="add-to-cart-btn" onclick="event.preventDefault();
+                                            document.getElementById('formAddToCart').submit();">ADD TO CART</a>
                                 </div>
                             </div>
                         @endforeach

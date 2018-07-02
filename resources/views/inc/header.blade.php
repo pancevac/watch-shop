@@ -34,9 +34,14 @@
                                                 <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
                                             </li>
                                         @endforeach
+                                            <li class="total">
+                                                <span class="pull-right">Total: ${{ Cart::instance('shopping')->subtotal() }}</span>
+                                                <a href="{{ route('cart.index') }}" class="btn btn-sm btn-cart">Cart</a>
+                                                <a href="checkout-1.html" class="btn btn-sm btn-checkout">Checkout</a>
+                                            </li>
                                     </ul>
                                 @else
-                                    <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ Cart::instance('shopping')->count() }}</span> <i class="ti-bag"></i> Your Bag is empty }}</a>
+                                    <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ Cart::instance('shopping')->count() }}</span> <i class="ti-bag"></i> Your Bag is empty</a>
                                     @endif
                             </div>
                             <div class="header-right-side-menu ml-15">

@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class CartsController extends Controller
 {
     /**
+     * Display shopping cart
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $cartItems = Cart::instance('shopping')->content();
+        return view('pages.cart')->with('cartItems', $cartItems);
+    }
+    /**
      * Add product to cart
      *
      * @param Request $request
@@ -27,7 +37,17 @@ class CartsController extends Controller
             'price' => $product->price,
         ])->associate(Product::class);
 
-        return back()->with('success', 'Item added to Cart!');
+        return back()->with('success', 'Product added to Cart!');
+    }
+
+    public function update(Request $request, $rowId)
+    {
+        if (!$request->has('quantity')) {
+           return abort(400);
+        }
+        // Update quantity of chosen product
+        Cart::instance('shopping')->update($rowId, $request->quantity);
+        return back()->with('success', 'Product quantity successfully updated!');
     }
 
     /**

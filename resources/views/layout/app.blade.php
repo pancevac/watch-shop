@@ -24,6 +24,7 @@
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     @section('appendCss')
         @show
 

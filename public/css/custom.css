@@ -1,0 +1,45 @@
+.help-line a {
+    background-color: #F8694A;
+}
+.top-discount-area .single-discount-area:nth-child(2) {
+    background-color: #F8694A;
+}
+/*.cart_quantity {
+    background-color: #F8694A;
+}*/
+.single_product_desc .cart .cart-submit {
+    background-color: #F8694A;
+}
+.header-right-side-menu > a:focus,
+.header-right-side-menu > a:hover {
+    background-color: #F8694A;
+    color: #fff;
+}
+#scrollUp {
+    background-color: #F8694A;
+}
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:hover {
+    background-color: #3a3a3a;
+}
+.karl-level {
+    background-color: #F8694A;
+}
+.karl-level:after {
+    border-color: transparent transparent #F8694A transparent;
+}
+.subscribtion_form .submit:hover {
+    background-color: #F8694A;
+}
+.cart-list li .btn-checkout {
+    background-color: #F8694A;
+}
+.product-description .add-to-cart-btn {
+    color: #F8694A;
+}
+.karl-checkout-btn {
+    background-color: #F8694A;
+}
+.coupon-code-area form > button {
+    background-color: #F8694A;
+}
