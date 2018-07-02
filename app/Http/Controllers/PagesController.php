@@ -25,7 +25,7 @@ class PagesController extends Controller
         // Related products
         $relatedProducts = Product::with('brand')->whereHas('brand', function ($query) use ($product) {
             $query->where('id', $product->brand->id);
-        })->inRandomOrder()->take(6)->get();
+        })->where('id', '<>', $product->id)->inRandomOrder()->take(6)->get();
 
         return view('pages.product', compact('product', 'relatedProducts'));
     }

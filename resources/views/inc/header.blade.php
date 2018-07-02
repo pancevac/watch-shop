@@ -14,31 +14,30 @@
                         <div class="header-cart-menu d-flex align-items-center ml-auto">
                             <!-- Cart Area -->
                             <div class="cart">
-                                <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">2</span> <i class="ti-bag"></i> Your Bag $20</a>
-                                <!-- Cart List Area Start -->
-                                <ul class="cart-list">
-                                    <li>
-                                        <a href="#" class="image"><img src="img/product-img/product-10.jpg" class="cart-thumb" alt=""></a>
-                                        <div class="cart-item-desc">
-                                            <h6><a href="#">Women's Fashion</a></h6>
-                                            <p>1x - <span class="price">$10</span></p>
-                                        </div>
-                                        <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="image"><img src="img/product-img/product-11.jpg" class="cart-thumb" alt=""></a>
-                                        <div class="cart-item-desc">
-                                            <h6><a href="#">Women's Fashion</a></h6>
-                                            <p>1x - <span class="price">$10</span></p>
-                                        </div>
-                                        <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
-                                    </li>
-                                    <li class="total">
-                                        <span class="pull-right">Total: $20.00</span>
-                                        <a href="cart.html" class="btn btn-sm btn-cart">Cart</a>
-                                        <a href="checkout-1.html" class="btn btn-sm btn-checkout">Checkout</a>
-                                    </li>
-                                </ul>
+
+                                @if(Cart::instance('shopping')->count())
+
+                                    <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ Cart::instance('shopping')->count() }}</span> <i class="ti-bag"></i> Your Bag ${{ Cart::instance('shopping')->subtotal() }}</a>
+                                    <!-- Cart List Area Start -->
+
+                                    <ul class="cart-list">
+                                        @foreach(Cart::instance('shopping')->content() as $cartItem)
+                                            <li>
+                                                <a href="#" class="image"><img src="{{ asset($cartItem->model->image) }}" class="cart-thumb" alt=""></a>
+                                                <div class="cart-item-desc">
+                                                    <h6><a href="{{ route('pages.show', [
+                                                    'brand' => $cartItem->model->brand->slug,
+                                                    'slug' => $cartItem->model->slug
+                                                    ]) }}">{{ $cartItem->name }}</a></h6>
+                                                    <p>{{ $cartItem->qty }}x - <span class="price">${{ $cartItem->price }}</span></p>
+                                                </div>
+                                                <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ Cart::instance('shopping')->count() }}</span> <i class="ti-bag"></i> Your Bag is empty }}</a>
+                                    @endif
                             </div>
                             <div class="header-right-side-menu ml-15">
                                 <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>
