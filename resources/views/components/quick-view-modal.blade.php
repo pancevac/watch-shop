@@ -17,11 +17,11 @@
                                 <div class="quickview_pro_des">
                                     <h4 class="title" id="modal-title"></h4>
                                     <div class="top_seller_product_rating mb-15">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" id="star-1" aria-hidden="true"></i>
+                                        <i class="fa fa-star" id="star-2" aria-hidden="true"></i>
+                                        <i class="fa fa-star" id="star-3" aria-hidden="true"></i>
+                                        <i class="fa fa-star" id="star-4" aria-hidden="true"></i>
+                                        <i class="fa fa-star" id="star-5" aria-hidden="true"></i>
                                     </div>
                                     <h5 class="price" id="modal-price">$120.99 <span>$130</span></h5>
                                     <p id="modal-description"></p>

@@ -23,7 +23,11 @@
                                     <ul class="cart-list">
                                         @foreach(Cart::instance('shopping')->content() as $cartItem)
                                             <li>
-                                                <a href="#" class="image"><img src="{{ asset($cartItem->model->image) }}" class="cart-thumb" alt=""></a>
+                                                <a href="{{ route('pages.show', [
+                                                    'brand' => $cartItem->model->brand->slug,
+                                                    'slug' => $cartItem->model->slug
+                                                    ]) }}"
+                                                   class="image"><img src="{{ asset($cartItem->model->image) }}" class="cart-thumb" alt=""></a>
                                                 <div class="cart-item-desc">
                                                     <h6><a href="{{ route('pages.show', [
                                                     'brand' => $cartItem->model->brand->slug,
@@ -37,7 +41,7 @@
                                             <li class="total">
                                                 <span class="pull-right">Total: ${{ Cart::instance('shopping')->subtotal() }}</span>
                                                 <a href="{{ route('cart.index') }}" class="btn btn-sm btn-cart">Cart</a>
-                                                <a href="checkout-1.html" class="btn btn-sm btn-checkout">Checkout</a>
+                                                <a href="{{ route('checkout') }}" class="btn btn-sm btn-checkout">Checkout</a>
                                             </li>
                                     </ul>
                                 @else

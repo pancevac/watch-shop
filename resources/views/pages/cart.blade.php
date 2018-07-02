@@ -110,7 +110,7 @@
                             <li><span>Shipping</span> <span>Free</span></li>
                             <li><span><strong>Total</strong></span> <span><strong>${{ Cart::instance('shopping')->total() }}</strong></span></li>
                         </ul>
-                        <a href="checkout.html" class="btn karl-checkout-btn">Proceed to checkout</a>
+                        <a href="{{ route('checkout') }}" class="btn karl-checkout-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

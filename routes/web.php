@@ -27,6 +27,7 @@ Route::post('/cart/{rowId}', 'CartsController@update')->name('cart.update');
 Route::delete('/cart/{id}', 'CartsController@destroy')->name('cart.destroy');
 
 // Pages
+Route::get('checkout', 'CheckoutController@index')->name('checkout');
 Route::get('product/{id}', 'PagesController@product')->name('pages.product');
 Route::get('{brand}/{slug}', 'PagesController@show')->name('pages.show');
 Route::get('/', 'PagesController@index')->name('/');
