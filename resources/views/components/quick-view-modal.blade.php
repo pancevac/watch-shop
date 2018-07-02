@@ -28,7 +28,8 @@
                                     <a href="#" id="modal-read-more">View Full Product Details</a>
                                 </div>
                                 <!-- Add to Cart Form -->
-                                <form class="cart" method="post">
+                                <form class="cart" method="post" action="{{ route('cart.create') }}">
+                                    {{ csrf_field() }}
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
 
@@ -36,7 +37,7 @@
 
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     </div>
-                                    <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button>
+                                    <button type="submit" id="addtocart" name="addtocart" value="" class="cart-submit">Add to cart</button>
                                     <!-- Wishlist -->
                                     <div class="modal_pro_wishlist">
                                         <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>

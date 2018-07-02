@@ -93,13 +93,14 @@
 
 
                         <!-- Add to Cart Form -->
-                        <form class="cart clearfix mb-50 d-flex" method="post">
+                        <form class="cart clearfix mb-50 d-flex" method="POST" action="{{ route('cart.create') }}">
                             <div class="quantity">
+                                {{ csrf_field() }}
                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
-                            <button type="submit" name="addtocart" value="5" class="btn cart-submit d-block">Add to cart</button>
+                            <button type="submit" name="addtocart" value="{{ $product->id }}" class="btn cart-submit d-block">Add to cart</button>
                         </form>
 
                         <div id="accordion" role="tablist">
@@ -246,6 +247,7 @@
                             $('#modal-description').text(product.description);
                             $('#modal-price').text('$'+ product.price);
                             $('#modal-read-more').attr('href', baseUrl + product.brand.slug + '/' + product.slug);
+                            $('#addtocart').val(product.id);
                         }
                     });
                 }

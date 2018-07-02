@@ -46,6 +46,9 @@
     @yield('breadcrumb')
     <!-- <<<<<<<<<<<<<<<<<<<< Breadcrumb Area End <<<<<<<<<<<<<<<<<<<< -->
 
+    {{-- Messages reports --}}
+    @include('inc.message')
+
     {{-- Main content --}}
     @yield('content')
 
