@@ -79,6 +79,6 @@ class CartsController extends Controller
 
     public function test()
     {
-        return view('pages.register');
+        return view('pages.thankyou');
     }
 }

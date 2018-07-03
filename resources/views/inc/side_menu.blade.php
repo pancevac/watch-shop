@@ -8,7 +8,7 @@
         <div class="menu-list">
             <h6>Brands</h6>
             <ul id="menu-content" class="menu-content collapse out">
-                @foreach($side_brands as $brand)
+                @foreach(\App\Brand::orderBy('name', 'ASC')->get() as $brand)
                     <li class="collapsed">
                         <a href="#">{{ $brand->name }}</a>
                     </li>

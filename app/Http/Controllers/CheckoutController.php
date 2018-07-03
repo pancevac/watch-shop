@@ -64,7 +64,9 @@ class CheckoutController extends Controller
 
             Cart::instance('shopping')->destroy();
             session()->forget('coupon');
-            return back()->with('success', 'Thank you! Your payment has been successfully accepted!');
+            // Redirect
+            return redirect()->route('thankyou')
+                ->with('success_message', 'Success');
         }
         // Catch error with invalid card
         catch (CardErrorException $e) {

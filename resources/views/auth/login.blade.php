@@ -40,7 +40,7 @@
                                     <button type="submit" class="btn karl-checkout-btn">Login</button>
                                 </div>
                                 <div class="col-4 mb-3 form-group">
-                                    <a href="#">Register</a><br>
+                                    <a href="{{ route('register') }}">Register</a><br>
                                     <a href="#">Forgot password?</a>
                                 </div>
                                 <div class="col-4 mb-3 form-group">

@@ -15,7 +15,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $brands = Brand::orderBy('name', 'ASC')->get();
-        View::share('side_brands', $brands);
+        //
     }
 }

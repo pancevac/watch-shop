@@ -42,6 +42,15 @@ Route::middleware('auth')->group(function () {
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
+// Thank you page after purchase
+Route::get('/thankyou', function () {
+
+    if (session()->has('success_message')) {
+        return view('pages.thankyou');
+    }
+    return redirect('/');
+})->name('thankyou');
+
 // Pages
 Route::post('charge', 'CheckoutController@charge')->name('charge');
 Route::get('checkout', 'CheckoutController@index')->name('checkout');
