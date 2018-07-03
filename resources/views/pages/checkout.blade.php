@@ -110,10 +110,14 @@
                                         </span> <span>${{ $cartItem->subtotal }}</span></li>
                                 @endif
                             @endforeach
-                            <li><span>Subtotal</span> <span>${{ Cart::instance('shopping')->subtotal() }}</span></li>
-                            <li><span>Tax</span> <span>${{ Cart::instance('shopping')->tax() }}</span></li>
+                            {{-- If user entered coupon, here show discounts --}}
+                            @if(session()->has('coupon'))
+                                <li><span>Discount</span> <span>-${{ session()->get('coupon')['discount'] }}</span></li>
+                            @endif
+                            <li><span>Subtotal</span> <span>${{ $newSubtotal }}</span></li>
+                            <li><span>Tax</span> <span>${{ $newTax }}</span></li>
                             <li><span>Shipping</span> <span>Free</span></li>
-                            <li><span><strong>Total</strong></span> <span><strong>${{ Cart::instance('shopping')->total() }}</strong></span></li>
+                            <li><span><strong>Total</strong></span> <span><strong>${{ $newTotal }}</strong></span></li>
                         </ul>
 
 
