@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Traits\CalculateCoupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CartsController extends Controller
 {
+    use CalculateCoupon;
     /**
      * Display shopping cart
      *
@@ -15,9 +17,14 @@ class CartsController extends Controller
      */
     public function index()
     {
-        dd(session()->get('coupon'));
         $cartItems = Cart::instance('shopping')->content();
-        return view('pages.cart')->with('cartItems', $cartItems);
+        return view('pages.cart', [
+            'cartItems' => $cartItems,
+            'newTax' => self::calculateCoupon()->get('newTax'),
+            'newSubtotal' => self::calculateCoupon()->get('newSubtotal'),
+            'taxPercent' => self::calculateCoupon()->get('taxPercent'),
+            'newTotal' => self::calculateCoupon()->get('newTotal'),
+        ]);
     }
     /**
      * Add product to cart

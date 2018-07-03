@@ -106,11 +106,24 @@
                         </div>
 
                         <ul class="cart-total-chart">
-                            <li><span>Subtotal</span> <span>${{ Cart::instance('shopping')->subtotal() }}</span></li>
-                            <li><span>Tax</span> <span>${{ Cart::instance('shopping')->tax() }}</span></li>
+                            <li><span>Subtotal</span> <span
+                                @if(session()->has('coupon'))
+                                style="text-decoration: line-through"
+                                @endif
+                                >${{ Cart::instance('shopping')->subtotal() }}</span></li>
+                            @if(session()->has('coupon'))
+                                <li><span>Discount({{ session()->get('coupon')['name'] }}) - <a
+                                                href="javascript:{}" onclick="document.getElementById('remove-coupon').submit();">Remove</a></span> <span>-${{ session()->get('coupon')['discount'] }}</span></li>
+                                <li><span>New subtotal</span> <span>${{ $newSubtotal }}</span></li>
+                            @endif
+                            <li><span>Tax({{ $taxPercent }}%)</span> <span>${{ $newTax }}</span></li>
                             <li><span>Shipping</span> <span>Free</span></li>
-                            <li><span><strong>Total</strong></span> <span><strong>${{ Cart::instance('shopping')->total() }}</strong></span></li>
+                            <li><span><strong>Total</strong></span> <span><strong>${{ $newTotal }}</strong></span></li>
                         </ul>
+                        <form id="remove-coupon" method="POST" action="{{ route('coupon.destroy') }}" style="display: none">
+                            {{ csrf_field() }}
+                            {{ method_field('delete') }}
+                        </form>
                         <a href="{{ route('checkout') }}" class="btn karl-checkout-btn">Proceed to checkout</a>
                     </div>
                 </div>
