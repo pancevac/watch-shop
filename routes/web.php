@@ -40,6 +40,7 @@ Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
 // Pages
+Route::post('charge', 'CheckoutController@charge')->name('charge');
 Route::get('checkout', 'CheckoutController@index')->name('checkout');
 Route::get('product/{id}', 'PagesController@product')->name('pages.product');
 Route::get('{brand}/{slug}', 'PagesController@show')->name('pages.show');

@@ -2,6 +2,17 @@
 
 @section('title', 'Checkout')
 
+@section('appendCss')
+    @parent
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/stripe.css') }}"/>
+    <script src="https://js.stripe.com/v3/"></script>
+    @endsection
+
+@section('appendJs')
+    @parent
+    <script src="{{ asset('js/stripe.js') }}"></script>
+@endsection
+
 @section('content')
 
     <!-- ****** Checkout Area Start ****** -->
@@ -17,7 +28,9 @@
                             <p>Enter your cupone code</p>
                         </div>
 
-                        <form action="#" method="post">
+                        <form action="{{ route('charge') }}" method="post" id="payment-form">
+                            {{ csrf_field() }}
+                            <button id="complete-order" type="submit" style="display: none"></button>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="first_name">First Name <span>*</span></label>
@@ -41,7 +54,7 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="street_address">Address <span>*</span></label>
-                                    <input type="text" class="form-control mb-3" id="street_address" name="address1" value="" required>
+                                    <input type="text" class="form-control mb-3" id="street_address1" name="address1" value="" required>
                                     <input type="text" class="form-control" id="street_address2" name="address2" value="">
                                 </div>
                                 <div class="col-12 mb-3">
@@ -61,8 +74,12 @@
                                     <input type="number" class="form-control" id="phone_number" name="phone" min="0" value="" required>
                                 </div>
                                 <div class="col-12 mb-4">
-                                    <label for="email_address">Email Address <span>*</span></label>
-                                    <input type="email" class="form-control" id="email_address" name="email" value="" required>
+                                    <label for="card_name">Name on Card </label>
+                                    <input type="text" class="form-control" id="card_name" name="card_name" value="">
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label for="email">Email Address <span>*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" value="" required>
                                 </div>
 
                                 <div class="col-12">
@@ -168,12 +185,20 @@
                                 <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
                                     <div class="card-body">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est cum autem eveniet saepe fugit, impedit magni.</p>
+                                        <label for="card-element">
+                                            Credit or debit card
+                                        </label>
+                                        <div id="card-element">
+                                            <!-- A Stripe Element will be inserted here. -->
+                                        </div>
+                                        <!-- Used to display Element errors. -->
+                                        <div id="card-errors" role="alert"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="#" class="btn karl-checkout-btn">Place Order</a>
+                        <a href="#" onclick="document.getElementById('complete-order').click();" class="btn karl-checkout-btn">Place Order</a>
                     </div>
                 </div>
 

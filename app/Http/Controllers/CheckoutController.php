@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Country;
 use App\Http\Requests\CheckoutRequest;
 use App\Traits\CalculateCoupon;
+use Cartalyst\Stripe\Exception\CardErrorException;
+use Cartalyst\Stripe\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -26,8 +29,43 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function store(CheckoutRequest $request)
+    public function charge(CheckoutRequest $request)
     {
-        //
+        // Get all cart items
+        $orders = Cart::instance('shopping')->content();
+        $contents = '';
+        // List items
+        foreach ($orders as $content) {
+            $contents .= $content->name.': '.$content->qty.', ';
+        }
+        // Charge with stripe
+        try {
+            $stripe = new Stripe();
+            $stripe->charges()->create([
+                'amount' => self::calculateCoupon()->get('newTotal'),
+                'currency' => 'usd',
+                'description' => 'Order',
+                'source' => $request->stripeToken,
+                'metadata' => [
+                    'contents' => $contents,
+                    'quantity' => Cart::instance('shopping')->count(),
+                    'discount' => collect(session()->get('coupon'))->toJson(),
+                ],
+            ]);
+
+            // Order table insert (pivot also)
+        }
+        catch (CardErrorException $e) {
+
+            //$this->addToOrdersTables($request, $e->getMessage());
+            return back()->with('error', $e->getMessage());
+            // Catch any other error
+        } catch (\Exception $e) {
+
+            //$this->addToOrdersTables($request, $e->getMessage());
+            Log::error('Error with charging card: '.$e->getMessage());
+        }
+
+        return back()->with('error', 'An error occured, please try again later!');
     }
 }

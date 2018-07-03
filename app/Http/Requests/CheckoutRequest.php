@@ -30,7 +30,6 @@ class CheckoutRequest extends FormRequest
             'last_name' => 'required',
             'email' => $emailValidation,
             'address1' => 'required',
-            'address2' => 'required',
             'city' => 'required',
             'state' => 'required',
             'country' => 'required',
