@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use App\Http\Requests\CheckoutRequest;
+use App\Order;
 use App\Traits\CalculateCoupon;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Stripe;
@@ -54,15 +55,23 @@ class CheckoutController extends Controller
             ]);
 
             // Order table insert (pivot also)
+            $order = Order::addToOrdersTables($request, null);
+
+            // Send order mail to customer
+
+            Cart::instance('shopping')->destroy();
+            session()->forget('coupon');
+            return back()->with('Thank you! Your payment has been successfully accepted!');
         }
+        // Catch error with invalid card
         catch (CardErrorException $e) {
 
-            //$this->addToOrdersTables($request, $e->getMessage());
+            Order::addToOrdersTables($request, $e->getMessage());
             return back()->with('error', $e->getMessage());
             // Catch any other error
         } catch (\Exception $e) {
 
-            //$this->addToOrdersTables($request, $e->getMessage());
+            Order::addToOrdersTables($request, $e->getMessage());
             Log::error('Error with charging card: '.$e->getMessage());
         }
 

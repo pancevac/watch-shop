@@ -77,9 +77,15 @@
                                     <label for="card_name">Name on Card </label>
                                     <input type="text" class="form-control" id="card_name" name="card_name" value="">
                                 </div>
+
                                 <div class="col-12 mb-4">
                                     <label for="email">Email Address <span>*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" value="" required>
+                                    @auth()
+                                        <input class="form-control" type="email" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
+                                    @endauth
+                                    @guest()
+                                        <input type="email" class="form-control" id="email" name="email" value="" required>
+                                    @endguest
                                 </div>
 
                                 <div class="col-12">

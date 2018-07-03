@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('email')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -23,12 +23,12 @@ class CreateOrdersTable extends Migration
             $table->string('address2')->nullable();
             $table->string('company')->nullable();
             $table->string('city')->nullable();
-            $table->integer('country_id')->unsigned();
+            $table->integer('country_id')->unsigned()->nullable();
             $table->integer('post_code')->nullable();
             $table->integer('phone')->nullable();
             $table->string('card_name')->nullable();
             $table->integer('discount')->nullable();
-            $table->integer('discount_code')->nullable();
+            $table->string('discount_code')->nullable();
             $table->integer('subtotal')->nullable();
             $table->integer('tax')->nullable();
             $table->integer('total')->nullable();
@@ -36,7 +36,7 @@ class CreateOrdersTable extends Migration
             $table->string('error')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -101,21 +101,16 @@
                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         </li>
                                         @else
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
-                                        </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                                             <div class="dropdown-menu" aria-labelledby="userDropdown">
                                                 <a class="dropdown-item" href="#">Account</a>
                                                 <a class="dropdown-item" href="{{ route('wishlist.index') }}">Wishlist</a>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}</a>
+                                                    {{ __('Logout') }}</a>
+                                            </div>
                                         </li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
