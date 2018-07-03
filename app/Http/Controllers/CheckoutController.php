@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use App\Http\Requests\CheckoutRequest;
+use App\Mail\OrderShipped;
 use App\Order;
 use App\Traits\CalculateCoupon;
 use Cartalyst\Stripe\Exception\CardErrorException;
@@ -11,6 +12,7 @@ use Cartalyst\Stripe\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -58,10 +60,11 @@ class CheckoutController extends Controller
             $order = Order::addToOrdersTables($request, null);
 
             // Send order mail to customer
+            Mail::send(new OrderShipped($order));
 
             Cart::instance('shopping')->destroy();
             session()->forget('coupon');
-            return back()->with('Thank you! Your payment has been successfully accepted!');
+            return back()->with('success', 'Thank you! Your payment has been successfully accepted!');
         }
         // Catch error with invalid card
         catch (CardErrorException $e) {

@@ -29,11 +29,14 @@ Route::get('/cart/deleteAll', 'CartsController@destroyAll')->name('cart.destroyA
 
 // WIsh list
 //Route::resource('wishlist', 'WishlistsController')->middleware('auth');
-Route::get('wishlist/deleteAll', 'WishlistsController@destroyAll')->name('wishlist.destroyAll');
-Route::get('wishlist', 'WishlistsController@index')->name('wishlist.index');
-Route::get('wishlist/{id}', 'WishlistsController@add')->name('wishlist.add');
-Route::post('wishlist', 'WishlistsController@updateAll')->name('wishlist.store');
-Route::delete('wishlist/{id}', 'WishlistsController@destroy')->name('wishlist.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('wishlist/deleteAll', 'WishlistsController@destroyAll')->name('wishlist.destroyAll');
+    Route::get('wishlist', 'WishlistsController@index')->name('wishlist.index');
+    Route::get('wishlist/{id}', 'WishlistsController@add')->name('wishlist.add');
+    Route::post('wishlist', 'WishlistsController@updateAll')->name('wishlist.store');
+    Route::delete('wishlist/{id}', 'WishlistsController@destroy')->name('wishlist.destroy');
+});
+
 
 // Coupon
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
