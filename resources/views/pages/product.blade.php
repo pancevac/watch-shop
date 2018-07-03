@@ -101,6 +101,12 @@
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                             <button type="submit" name="addtocart" value="{{ $product->id }}" class="btn cart-submit d-block">Add to cart</button>
+                            <div class="product_body" style="display: inline;">
+
+                                <div class="modal_pro_wishlist wishlist_btn_custom">
+                                    <a href="{{ route('wishlist.add', ['id' => $product->id]) }}" id="wishlist_submit"><i class="ti-heart"></i></a>
+                                </div>
+                            </div>
                         </form>
 
                         <div id="accordion" role="tablist">

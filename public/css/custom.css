@@ -34,6 +34,12 @@
 .cart-list li .btn-checkout {
     background-color: #F8694A;
 }
+.cart-list td .btn-checkout {
+    background-color: #F8694A;
+    border-radius: 0;
+    color: #fff;
+    font-size: 13px;
+}
 .product-description .add-to-cart-btn {
     color: #F8694A;
 }
@@ -45,4 +51,16 @@
 }
 .cart_quantity {
     background-color: #F8694A;
+}
+.product_body .modal_pro_wishlist > a,
+.product_body .modal_pro_compare > a {
+    background-color: #e91e63;
+    color: #fff;
+    display: block;
+    height: 40px;
+    margin: 0 15px;
+    text-align: center;
+    width: 40px;
+    padding-top: 5px;
+    font-size: 22px;
 }
