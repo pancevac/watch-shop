@@ -76,4 +76,9 @@ class CartsController extends Controller
         Cart::instance('shopping')->destroy();
         return redirect()->route('/')->with('success', 'Shopping cart cleaned!');
     }
+
+    public function test()
+    {
+        return view('pages.register');
+    }
 }

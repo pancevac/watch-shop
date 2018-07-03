@@ -48,3 +48,5 @@ Route::get('checkout', 'CheckoutController@index')->name('checkout');
 Route::get('product/{id}', 'PagesController@product')->name('pages.product');
 Route::get('{brand}/{slug}', 'PagesController@show')->name('pages.show');
 Route::get('/', 'PagesController@index')->name('/');
+
+Route::get('/test', 'CartsController@test');
