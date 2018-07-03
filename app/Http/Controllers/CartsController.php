@@ -15,6 +15,7 @@ class CartsController extends Controller
      */
     public function index()
     {
+        dd(session()->get('coupon'));
         $cartItems = Cart::instance('shopping')->content();
         return view('pages.cart')->with('cartItems', $cartItems);
     }
@@ -34,7 +35,8 @@ class CartsController extends Controller
             'id' => $product->id,
             'name' => $product->name,
             'qty' => $request->quantity,
-            'price' => $product->price,
+            'price' => isset($product->discount->percent_off) ?
+                calculateDiscountPrice($product->price, $product->discount->percent_off) : $product->price,
         ])->associate(Product::class);
 
         return back()->with('success', 'Product added to Cart!');
@@ -60,5 +62,11 @@ class CartsController extends Controller
     {
         Cart::instance('shopping')->remove($id);
         return back()->with('success', 'Product successfully removed from cart!');
+    }
+
+    public function destroyAll()
+    {
+        Cart::instance('shopping')->destroy();
+        return redirect()->route('/')->with('success', 'Shopping cart cleaned!');
     }
 }

@@ -25,6 +25,11 @@ Route::get('/cart', 'CartsController@index')->name('cart.index');
 Route::post('/cart', 'CartsController@create')->name('cart.create');
 Route::post('/cart/{rowId}', 'CartsController@update')->name('cart.update');
 Route::delete('/cart/{id}', 'CartsController@destroy')->name('cart.destroy');
+Route::get('/cart/deleteAll', 'CartsController@destroyAll')->name('cart.destroyAll');
+
+// Coupon
+Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
+Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
 // Pages
 Route::get('checkout', 'CheckoutController@index')->name('checkout');

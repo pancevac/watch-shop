@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Coupon;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CouponsController extends Controller
@@ -19,7 +20,7 @@ class CouponsController extends Controller
 
         // Fail
         if (!$coupon) {
-            return redirect()->route('checkout.index')->with('error', 'Invalid coupon code. Please try again.');
+            return redirect()->route('cart.index')->with('error', 'Invalid coupon code. Please try again.');
         }
 
         // Success
@@ -28,7 +29,7 @@ class CouponsController extends Controller
             'discount' => $coupon->discount(Cart::instance('shopping')->subtotal()),
         ]);
 
-        return redirect()->route('checkout.index')->with('success', 'Coupon has been applied!');
+        return redirect()->route('cart.index')->with('success', 'Coupon has been applied!');
     }
 
 

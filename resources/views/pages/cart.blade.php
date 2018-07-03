@@ -53,7 +53,7 @@
                             <a href="shop-grid-left-sidebar.html">Continue shooping</a>
                         </div>
                         <div class="update-checkout w-50 text-right">
-                            <a href="#">clear cart</a>
+                            <a href="{{ route('cart.destroyAll') }}">clear cart</a>
                             <a href="#">Update cart</a>
                         </div>
                     </div>
@@ -68,8 +68,9 @@
                             <h5>Cupon code</h5>
                             <p>Enter your cupone code</p>
                         </div>
-                        <form action="#">
-                            <input type="search" name="search" placeholder="#569ab15">
+                        <form action="{{ route('coupon.store') }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="search" name="coupon_code" placeholder="#569ab15">
                             <button type="submit">Apply</button>
                         </form>
                     </div>
