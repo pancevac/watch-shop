@@ -10,7 +10,7 @@
             <ul id="menu-content" class="menu-content collapse out">
                 @foreach(\App\Brand::orderBy('name', 'ASC')->get() as $brand)
                     <li class="collapsed">
-                        <a href="#">{{ $brand->name }}</a>
+                        <a href="{{ route('shop.brand', ['slug' => $brand->slug]) }}">{{ $brand->name }}</a>
                     </li>
                 @endforeach
                 {{--<!-- Single Item -->

@@ -1,4 +1,4 @@
-<header class="header_area">
+<header class="header_area bg-img background-overlay-white" style="background-image: url('storage/{{ setting('site.header_image') }}');">
     <!-- Top Header Area Start -->
     <div class="top_header_area">
         <div class="container h-100">
@@ -8,7 +8,7 @@
                     <div class="top_single_area d-flex align-items-center">
                         <!-- Logo Area -->
                         <div class="top_logo">
-                            <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                            <a href="#"><img src="{{ productImage(setting('site.logo')) }}" alt=""></a>
                         </div>
                         <!-- Cart & Menu Area -->
                         <div class="header-cart-menu d-flex align-items-center ml-auto">
@@ -66,63 +66,15 @@
                 <div class="col-12 d-md-flex justify-content-between">
                     <!-- Header Social Area -->
                     <div class="header-social-area">
-                        <a href="#"><span class="karl-level">Share</span> <i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        {{ menu('header_social', 'components.header_social') }}
                     </div>
                     <!-- Menu Area -->
                     <div class="main-menu-area">
-                        <nav class="navbar navbar-expand-lg align-items-start">
-
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar" aria-controls="karl-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="ti-menu"></i></span></button>
-
-                            <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
-                                <ul class="navbar-nav animated" id="nav">
-                                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                        <div class="dropdown-menu" aria-labelledby="karlDropdown">
-                                            <a class="dropdown-item" href="index.html">Home</a>
-                                            <a class="dropdown-item" href="shop.html">Shop</a>
-                                            <a class="dropdown-item" href="product-details.html">Product Details</a>
-                                            <a class="dropdown-item" href="cart.html">Cart</a>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Dresses</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#"><span class="karl-level">hot</span> Shoes</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                                    @guest
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                        </li>
-                                        @else
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
-                                            <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                                <a class="dropdown-item" href="#">Account</a>
-                                                <a class="dropdown-item" href="{{ route('wishlist.index') }}">Wishlist</a>
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}</a>
-                                            </div>
-                                        </li>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    @endguest
-                                </ul>
-                            </div>
-                        </nav>
+                        {{ menu('nav_main', 'components.nav') }}
                     </div>
                     <!-- Help Line -->
                     <div class="help-line">
-                        <a href="tel:+346573556778"><i class="ti-headphone-alt"></i> +34 657 3556 778</a>
+                        <a href="tel:{{ setting('site.help_line') }}"><i class="ti-headphone-alt"></i> {{ setting('site.help_line') }}</a>
                     </div>
                 </div>
             </div>
