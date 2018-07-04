@@ -238,6 +238,8 @@
                                 window.location.href = link;
                             });
                             $('#addtocart').val(product.id);
+                            $('#addtowishlist').attr('href', '{{ url('wishlist') }}/'+product.id);
+                            $('#compare').attr('href', '{{ url('compare') }}/'+product.id);
                         }
                     });
                 }

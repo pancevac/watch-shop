@@ -21,9 +21,6 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/compare/{id}', 'CompareController@compare')->name('compare');
-Route::get('/compare', function () {
-    return view('pages.compare');
-});
 
 // Shop
 Route::get('/shop', 'ShopController@index')->name('shop.index');

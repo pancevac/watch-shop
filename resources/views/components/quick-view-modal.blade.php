@@ -40,7 +40,7 @@
                                     <button type="submit" id="addtocart" name="addtocart" value="" class="cart-submit">Add to cart</button>
                                     <!-- Wishlist -->
                                     <div class="modal_pro_wishlist">
-                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
+                                        <a href="#" id="addtowishlist"><i class="ti-heart"></i></a>
                                     </div>
                                     <!-- Compare -->
                                     <div class="modal_pro_compare">

@@ -122,39 +122,39 @@
                             </div>
                         </form>
 
-                        <div id="{{ $loop->count }}accordion" role="tablist">
+                        <div id="{{ $loop->iteration }}accordion" role="tablist">
                             <div class="card">
-                                <div class="card-header" role="tab" id="{{ $loop->count }}headingOne">
+                                <div class="card-header" role="tab" id="{{ $loop->iteration }}headingOne">
                                     <h6 class="mb-0">
-                                        <a data-toggle="collapse" href="#{{ $loop->count }}collapseOne" aria-expanded="true" aria-controls="{{ $loop->count }}collapseOne">Description</a>
+                                        <a data-toggle="collapse" href="#{{ $loop->iteration }}collapseOne" aria-expanded="true" aria-controls="{{ $loop->iteration }}collapseOne">Description</a>
                                     </h6>
                                 </div>
 
-                                <div id="{{ $loop->count }}collapseOne" class="collapse show" role="tabpanel" aria-labelledby="{{ $loop->count }}headingOne" data-parent="#{{ $loop->count }}accordion">
+                                <div id="{{ $loop->iteration }}collapseOne" class="collapse show" role="tabpanel" aria-labelledby="{{ $loop->iteration }}headingOne" data-parent="#{{ $loop->iteration }}accordion">
                                     <div class="card-body">
                                         <p>{!! $product->description !!}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card">
-                                <div class="card-header" role="tab" id="{{ $loop->count }}headingTwo">
+                                <div class="card-header" role="tab" id="{{ $loop->iteration }}headingTwo">
                                     <h6 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" href="#{{ $loop->count }}collapseTwo" aria-expanded="false" aria-controls="{{ $loop->count }}collapseTwo">Details</a>
+                                        <a class="collapsed" data-toggle="collapse" href="#{{ $loop->iteration }}collapseTwo" aria-expanded="false" aria-controls="{{ $loop->iteration }}collapseTwo">Details</a>
                                     </h6>
                                 </div>
-                                <div id="{{ $loop->count }}collapseTwo" class="collapse" role="tabpanel" aria-labelledby="{{ $loop->count }}headingTwo" data-parent="#{{ $loop->count }}accordion">
+                                <div id="{{ $loop->iteration }}collapseTwo" class="collapse" role="tabpanel" aria-labelledby="{{ $loop->iteration }}headingTwo" data-parent="#{{ $loop->iteration }}accordion">
                                     <div class="card-body">
                                         <p>{!! $product->details !!}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card">
-                                <div class="card-header" role="tab" id="{{ $loop->count }}headingThree">
+                                <div class="card-header" role="tab" id="{{ $loop->iteration }}headingThree">
                                     <h6 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" href="#{{ $loop->count }}collapseThree" aria-expanded="false" aria-controls="{{ $loop->count }}collapseThree">Reviews &amp; Ratings</a>
+                                        <a class="collapsed" data-toggle="collapse" href="#{{ $loop->iteration }}collapseThree" aria-expanded="false" aria-controls="{{ $loop->iteration }}collapseThree">Reviews &amp; Ratings</a>
                                     </h6>
                                 </div>
-                                <div id="{{ $loop->count }}collapseThree" class="collapse" role="tabpanel" aria-labelledby="{{ $loop->count }}headingThree" data-parent="#{{ $loop->count }}accordion">
+                                <div id="{{ $loop->iteration }}collapseThree" class="collapse" role="tabpanel" aria-labelledby="{{ $loop->iteration }}headingThree" data-parent="#{{ $loop->iteration }}accordion">
                                     <div class="card-body">
 
                                         @foreach($product->comments as $comment)
