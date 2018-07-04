@@ -20,7 +20,7 @@ class CompareController extends Controller
                 session()->put('compare2', $id);
                 // Redirect to to view with compare products
                 $products = $this->compareMerge();
-                return view('pages.compare')->with('products', $products);
+                return view('pages.compare', compact('products'));
             }
             return back()->with('error', 'Unknown product, try again!');
         }
@@ -45,6 +45,9 @@ class CompareController extends Controller
         // Load products
         $product1 = Product::with(['brand', 'comments.commented'])->where('id', session()->get('compare1'))->first();
         $product2 = Product::with(['brand', 'comments.commented'])->where('id', session()->get('compare2'))->first();
+
+        session()->forget('compare1');
+        session()->forget('compare2');
 
         return compact('product1', 'product2');
     }

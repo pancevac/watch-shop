@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-12">
                 <ol class="breadcrumb d-flex align-items-center">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Dresses</a></li>
-                    <li class="breadcrumb-item active">Long Dress</li>
+                    <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Shop</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('shop.brand', ['slug' => $product->brand->slug]) }}">{{ $product->brand->name }}</a></li>
+                    <li class="breadcrumb-item active">{{ $product->name }}</li>
                 </ol>
                 <!-- btn -->
-                <a href="#" class="backToHome d-block"><i class="fa fa-angle-double-left"></i> Back to Category</a>
+                <a href="{{ route('shop.brand', ['id' => $product->brand->slug]) }}" class="backToHome d-block"><i class="fa fa-angle-double-left"></i> Back to Category</a>
             </div>
         </div>
     </div>
