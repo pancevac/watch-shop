@@ -23,7 +23,7 @@
                                         <!-- Single Item -->
                                         @foreach($brands as $brand)
 
-                                            <li><a href="#">{{ $brand->name }}</a></li>
+                                            <li><a href="{{ route('shop.brand', ['slug' => $brand->slug]) }}">{{ $brand->name }}</a></li>
 
                                         @endforeach
                                         {{--<li data-toggle="collapse" data-target="#women2">
@@ -88,12 +88,17 @@
                             <h6 class="widget-title mb-30">Filter by Price</h6>
                             <div class="widget-desc">
                                 <div class="slider-range">
-                                    <div data-min="0" data-max="3000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="0" data-value-max="1350" data-label-result="Price:">
+                                    {{--<div data-min="{{ $min }}" data-max="{{ $max }}" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="0" data-value-max="1350" data-label-result="Price:">
                                         <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                        <span id="slider-min" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                        <span id="slider-max" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                     </div>
-                                    <div class="range-price">Price: 0 - 1350</div>
+                                    <div class="range-price">Price: {{ $min }} - {{ $max }}</div>--}}
+
+                                    <div class="range-price">Min Price:</div>
+                                    <input type="text" class="price-field" id="price-min" name="price-min" value="{{ $min }}">
+                                    <div class="range-price">Max Price:</div>
+                                    <input type="text" class="price-field" id="price-max"  name="orice-max" value="{{ $max }}">
                                 </div>
                             </div>
                         </div>
@@ -228,12 +233,24 @@
                             $('#modal-title').text(product.name);
                             $('#modal-description').text(product.description);
                             $('#modal-price').text('$'+ product.price);
-                            $('#modal-read-more').attr('href', baseUrl + product.brand.slug + '/' + product.slug);
+                            $('#modal-read-more').on('click', function () {
+                                var link = baseUrl + product.brand.slug + '/' + product.slug;
+                                window.location.href = link;
+                            });
                             $('#addtocart').val(product.id);
                         }
                     });
                 }
             });
+
+            $('.price-field').on('change', function () {
+                var min = $('#price-min').val();
+                var max = $('#price-max').val();
+
+                var path = window.location.pathname;
+                document.location.href = path+'?price_min='+min+'&price_max='+max;
+            });
+
         });
     </script>
 

@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Shop
 Route::get('/shop', 'ShopController@index')->name('shop.index');
+Route::get('/shop/{slug}', 'ShopController@brand')->name('shop.brand');
 
 Route::post('/comment/{id}', 'CommentsController@comment')->name('comment');
 

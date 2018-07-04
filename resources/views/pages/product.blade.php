@@ -258,7 +258,10 @@
                             $('#modal-title').text(product.name);
                             $('#modal-description').text(product.description);
                             $('#modal-price').text('$'+ product.price);
-                            $('#modal-read-more').attr('href', baseUrl + product.brand.slug + '/' + product.slug);
+                            $('#modal-read-more').on('click', function () {
+                                var link = baseUrl + product.brand.slug + '/' + product.slug;
+                                window.location.href = link;
+                            });
                             $('#addtocart').val(product.id);
                         }
                     });

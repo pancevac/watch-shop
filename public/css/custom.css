@@ -81,3 +81,13 @@
 .navbar-toggler {
     background-color: #F8694A;
 }
+.price-field {
+    border: 1px solid #ddd;
+    height: 40px;
+    padding: 5px 15px;
+    width: 140px;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+    font-size: 14px;
+}

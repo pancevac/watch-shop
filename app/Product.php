@@ -27,8 +27,24 @@ class Product extends Model
         return $this->belongsToMany(Order::class)->withPivot('quantity', 'price', 'percent_off');
     }
 
-    public static function getRandom($pagination)
+    public static function getRandom($pagination, $min = null, $max = null)
     {
-        return self::inRandomOrder()->paginate($pagination);
+        $query = self::inRandomOrder();
+        if ($min && $max) {
+            $query = $query->where('price', '>=', $min)->where('price', '<=', $max);
+        }
+        return $query->paginate($pagination);
+    }
+
+    public static function getBasedOnBrand($slug, $request, $paginate)
+    {
+        $query = self::whereHas('brand', function ($brand) use ($slug) {
+            $brand->whereSlug($slug);
+        });
+        if ($request->has('price_min') && $request->has('price_max')) {
+            $query = $query->where('price', '>=', $request->price_min)->where('price', '<=', $request->price_max);
+        }
+
+        return $query->orderBy('updated_at')->paginate($paginate);
     }
 }
