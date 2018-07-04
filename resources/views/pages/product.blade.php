@@ -54,7 +54,7 @@
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc">
 
-                        <h4 class="title"><a href="#">{{ ucfirst($product->brand->name) }}</a></h4>
+                        <h4 class="title"><a href="{{ route('shop.brand', ['slug' => $product->brand->slug]) }}">{{ ucfirst($product->brand->name) }}</a></h4>
 
                         <p>SSE143J1 SEIKO Astron GPS Solar Dual-Time Big Date Novak Djokovic Limited Edition muški ručni sat</p>
 
@@ -263,6 +263,7 @@
                                 window.location.href = link;
                             });
                             $('#addtocart').val(product.id);
+                            $('#compare').attr('href', '{{ url('compare') }}/'+product.id);
                         }
                     });
                 }

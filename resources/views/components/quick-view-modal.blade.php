@@ -44,7 +44,7 @@
                                     </div>
                                     <!-- Compare -->
                                     <div class="modal_pro_compare">
-                                        <a href="compare.html" target="_blank"><i class="ti-stats-up"></i></a>
+                                        <a id="compare" href="{{ url('compare') }}"><i class="ti-stats-up"></i></a>
                                     </div>
                                 </form>
 

@@ -91,3 +91,6 @@
     appearance: textfield;
     font-size: 14px;
 }
+#sideMenuClose:hover {
+    background-color: #F8694A;
+}
