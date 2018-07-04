@@ -26,4 +26,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class)->withPivot('quantity', 'price', 'percent_off');
     }
+
+    public static function getRandom($pagination)
+    {
+        return self::inRandomOrder()->paginate($pagination);
+    }
 }

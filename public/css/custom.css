@@ -64,3 +64,20 @@
     padding-top: 5px;
     font-size: 22px;
 }
+.menu-content > li > a:before {
+    background-color: #F8694A;
+}
+.widget.size .widget-desc a:hover,
+.widget.size .widget-desc a:focus {
+    background-color: #F8694A;
+    color: #fff;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar-toggler {
+
+        background-color: #F8694A;
+
+    }}
+.navbar-toggler {
+    background-color: #F8694A;
+}

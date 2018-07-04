@@ -220,14 +220,14 @@
                                     <h4 class="product-price">${{ $product->price }}</h4>
                                     <p>{{ $product->name }}</p>
                                     {{--<h4 class="title"><a href="#">{{ ucfirst($product->brand->name) }}</a></h4>--}}
-                                    <form id="formAddToCart" style="display: none;" method="POST" action="{{ route('cart.create') }}">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <input type="hidden" name="addtocart" value="{{ $product->id }}">
-                                        {{ csrf_field() }}
-                                    </form>
+
                                     <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn" onclick="event.preventDefault();
-                                            document.getElementById('formAddToCart').submit();">ADD TO CART</a>
+                                    <a href="#" onclick="document.getElementById('addtocart{{ $product->id }}').click()" class="add-to-cart-btn">ADD TO CART</a>
+                                    <form action="{{ route('cart.create') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button id="addtocart{{ $product->id }}" type="submit" name="addtocart" value="{{ $product->id }}" style="display: none"></button>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach

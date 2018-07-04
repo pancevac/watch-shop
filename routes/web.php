@@ -16,6 +16,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Route::get('/shop', 'ShopController@index')->name('shop.index');
+
+// Shop
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 
 Route::post('/comment/{id}', 'CommentsController@comment')->name('comment');
