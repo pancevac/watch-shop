@@ -94,3 +94,14 @@
 #sideMenuClose:hover {
     background-color: #F8694A;
 }
+.karl-btn:hover,
+.karl-btn:focus {
+    font-weight: 700;
+    color: #fff;
+    background-color: #F8694A;
+    border-color: #F8694A;
+}
+.welcome_slides.owl-carousel .owl-dot.active {
+    background-color: #F8694A;
+    border-color: #F8694A;
+}
