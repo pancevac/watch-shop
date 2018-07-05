@@ -8,7 +8,7 @@
                     <div class="top_single_area d-flex align-items-center">
                         <!-- Logo Area -->
                         <div class="top_logo">
-                            <a href="#"><img src="{{ productImage(setting('site.logo')) }}" alt=""></a>
+                            <a href="{{ route('/') }}"><img src="{{ productImage(setting('site.logo')) }}" alt=""></a>
                         </div>
                         <!-- Cart & Menu Area -->
                         <div class="header-cart-menu d-flex align-items-center ml-auto">
@@ -27,7 +27,7 @@
                                                     'brand' => $cartItem->model->brand->slug,
                                                     'slug' => $cartItem->model->slug
                                                     ]) }}"
-                                                   class="image"><img src="{{ asset($cartItem->model->image) }}" class="cart-thumb" alt=""></a>
+                                                   class="image"><img src="{{ productImage($cartItem->model->image) }}" class="cart-thumb" alt=""></a>
                                                 <div class="cart-item-desc">
                                                     <h6><a href="{{ route('pages.show', [
                                                     'brand' => $cartItem->model->brand->slug,
@@ -45,7 +45,7 @@
                                             </li>
                                     </ul>
                                 @else
-                                    <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ Cart::instance('shopping')->count() }}</span> <i class="ti-bag"></i> Your Bag is empty</a>
+                                    <a id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ Cart::instance('shopping')->count() }}</span> <i class="ti-bag"></i> Your Bag is empty</a>
                                     @endif
                             </div>
                             <div class="header-right-side-menu ml-15">

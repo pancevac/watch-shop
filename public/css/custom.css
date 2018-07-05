@@ -52,13 +52,23 @@
 .cart_quantity {
     background-color: #F8694A;
 }
-.product_body .modal_pro_wishlist > a,
-.product_body .modal_pro_compare > a {
+.product_body .modal_pro_wishlist > a {
     background-color: #e91e63;
     color: #fff;
     display: block;
     height: 40px;
     margin: 0 15px;
+    text-align: center;
+    width: 40px;
+    padding-top: 5px;
+    font-size: 22px;
+}
+.product_body .modal_pro_compare > a {
+    background-color: #00bcd4;
+    color: #fff;
+    display: block;
+    height: 40px;
+    margin: 0 15px 0 0;
     text-align: center;
     width: 40px;
     padding-top: 5px;

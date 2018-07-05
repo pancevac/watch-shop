@@ -26,7 +26,7 @@
                                         <a href="{{ route('pages.show', [
                                             'brand' => $cartItem->model->brand->name,
                                             'slug' => $cartItem->model->slug
-                                        ]) }}"><img src="{{ asset($cartItem->model->image) }}" alt="Product"></a>
+                                        ]) }}"><img src="{{ productImage($cartItem->model->image) }}" alt="Product"></a>
                                         <h6>{{ $cartItem->name }}</h6>
                                     </td>
                                     <td class="price"><span>${{ $cartItem->price }}</span></td>
@@ -50,11 +50,10 @@
 
                     <div class="cart-footer d-flex mt-30">
                         <div class="back-to-shop w-50">
-                            <a href="shop-grid-left-sidebar.html">Continue shooping</a>
+                            <a href="{{ route('shop.index') }}">Continue shooping</a>
                         </div>
                         <div class="update-checkout w-50 text-right">
                             <a href="{{ route('cart.destroyAll') }}">clear cart</a>
-                            <a href="#">Update cart</a>
                         </div>
                     </div>
 

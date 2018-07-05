@@ -70,14 +70,13 @@
                 </div>--}}
                 <div class="col-12 col-md-6">
                     <div class="col-6 col-md-6">
-                        <a class="gallery_img" href="{{ asset($product->image) }}">
-                            <img class="d-block w-100" src="{{ asset($product->image) }}" alt="First slide">
+                        <a class="gallery_img" href="{{ productImage($product->image) }}">
+                            <img class="d-block w-100" src="{{ productImage($product->image) }}" alt="First slide">
                         </a>
 
                     </div>
                     <div class="single_product_desc">
-
-                        <h4 class="title"><a href="{{ route('pages.show', ['brand' => $product->brand->name, 'slug' => $product->name]) }}">{{ $product->name }}</a></h4>
+                        <h4 class="title"><a href="{{ route('pages.show', ['brand' => $product->brand->slug, 'slug' => $product->slug]) }}">{{ $product->name }}</a></h4>
 
                         <h4 class="price">$ {{ $product->price }}</h4>
 
@@ -295,3 +294,53 @@
 
 
     @endsection
+
+@section('appendCss')
+    @parent
+    <style>
+        .stars {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .stars input[type="radio"] {
+            display: none;
+        }
+
+        .stars>label {
+            float: right;
+            cursor: pointer;
+            padding: 0px 3px;
+            margin: 0px;
+            -webkit-transition: 0.3s all;
+            transition: 0.3s all;
+        }
+
+        .stars>label:hover, .review-form .input-rating .stars>label:hover~label {
+            -webkit-transform: scale(1.5);
+            -ms-transform: scale(1.5);
+            transform: scale(1.5);
+        }
+
+        .stars>label:before {
+            content: "\f006";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            color: #DADADA;
+            font-size: 14px;
+            -webkit-transition: 0.3s all;
+            transition: 0.3s all;
+        }
+
+        .stars>label:hover:before, .review-form .input-rating .stars>label:hover~label:before {
+            content: "\f005";
+            color: #FFB656;
+        }
+
+        .stars>input:checked label:before, .review-form .input-rating .stars>input:checked~label:before {
+            content: "\f005";
+            color: #FFB656;
+        }
+    </style>
+@endsection

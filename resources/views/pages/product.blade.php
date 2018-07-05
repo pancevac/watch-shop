@@ -103,6 +103,12 @@
                                     <a href="{{ route('wishlist.add', ['id' => $product->id]) }}" id="wishlist_submit"><i class="ti-heart"></i></a>
                                 </div>
                             </div>
+                            <div class="product_body">
+
+                                <div class="modal_pro_compare" style="float: left">
+                                    <a href="{{ route('compare', ['id' => $product->id]) }}" id="compare_submit"><i class="ti-stats-up"></i></a>
+                                </div>
+                            </div>
                         </form>
 
                         <div id="accordion" role="tablist">
@@ -147,7 +153,7 @@
                                             @endforeach
 
                                         <hr>
-
+                                            @auth
                                         <form method="POST" action="{{ route('comment', ['id' => $product->id]) }}">
                                             <div class="form-group cart">
 
@@ -172,6 +178,10 @@
                                                 <button type="submit" name="submitComment" value="5" class="btn cart-submit d-block">Submit</button>
                                             </div>
                                         </form>
+                                                @endauth
+                                        @guest
+                                            <h6>Please login in order to leave a comment.</h6>
+                                            @endguest
                                     </div>
                                 </div>
                             </div>

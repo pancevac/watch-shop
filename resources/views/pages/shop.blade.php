@@ -160,14 +160,8 @@
 
                             @foreach($products as $product)
 
-                                @php
-                                    if ($loop->first) {
-                                        $dataDelay = 2;
-                                    }
-                                    $dataDelay++;
-                                @endphp
                                 <!-- Single gallery Item -->
-                                    <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.{{ $dataDelay }}s">
+                                    <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
                                         <!-- Product Image -->
                                         <div class="product-img">
                                             <img src="{{ productImage($product->image) }}" alt="">
