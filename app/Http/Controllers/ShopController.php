@@ -68,4 +68,17 @@ class ShopController extends Controller
         return view('pages.shop', compact('products', 'recommended', 'min', 'max'));
     }
 
+    public function search(Request $request)
+    {
+        if (!$request->has('search')) {
+            return back()->with('Morate uneti neku rec pre slanja!');
+        }
+        $products = Product::searchProducts($request->search, 12);
+        $min = $products->min('price');
+        $max = $products->max('price');
+        $recommended = OrderProduct::getTopSales(3);
+
+        return view('pages.shop', compact('products', 'min', 'max', 'recommended'));
+    }
+
 }

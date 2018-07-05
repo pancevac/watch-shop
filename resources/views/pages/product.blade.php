@@ -18,11 +18,13 @@
                                 <li class="active" data-target="#product_details_slider" data-slide-to="0"
                                     style="background-image: url({{ productImage($product->image) }});">
                                 </li>
-                                @foreach(json_decode($product->gallery) as $singleImg)
-                                    <li data-target="#product_details_slider" data-slide-to="{{ $loop->iteration }}"
-                                        style="background-image: url({{ productImage($singleImg) }});">
-                                    </li>
-                                @endforeach
+                                @if($product->gallery)
+                                    @foreach(json_decode($product->gallery) as $singleImg)
+                                        <li data-target="#product_details_slider" data-slide-to="{{ $loop->iteration }}"
+                                            style="background-image: url({{ productImage($singleImg) }});">
+                                        </li>
+                                    @endforeach
+                                @endif
                             </ol>
 
                             <div class="carousel-inner">
@@ -31,13 +33,15 @@
                                         <img class="d-block w-100" src="{{ productImage($product->image) }}" alt="First slide">
                                     </a>
                                 </div>
-                                @foreach(json_decode($product->gallery) as $singleImg)
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="{{ productImage($singleImg) }}">
-                                            <img class="d-block w-100" src="{{ productImage($singleImg) }}" alt="Second slide">
-                                        </a>
-                                    </div>
-                                @endforeach
+                                @if($product->gallery)
+                                    @foreach(json_decode($product->gallery) as $singleImg)
+                                        <div class="carousel-item">
+                                            <a class="gallery_img" href="{{ productImage($singleImg) }}">
+                                                <img class="d-block w-100" src="{{ productImage($singleImg) }}" alt="Second slide">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -62,4 +62,9 @@ class Product extends Model
     {
         return self::with('brand')->featured()->stock()->inRandomOrder()->take($take)->get();
     }
+
+    public static function searchProducts($keyword, $paginate)
+    {
+        return self::where('name', 'LIKE', "%$keyword%")->stock()->paginate($paginate);
+    }
 }

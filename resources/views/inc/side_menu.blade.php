@@ -6,6 +6,12 @@
     <!--  Side Nav  -->
     <div class="nav-side-menu">
         <div class="menu-list">
+            <div class="coupon-code-area col-md-12" style="padding-top: 20px;">
+                <form method="GET" action="{{ route('shop.search') }}">
+                    <input type="text" id="search" name="search" value="" placeholder="Products" required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
             <h6>Brands</h6>
             <ul id="menu-content" class="menu-content collapse out">
                 @foreach(\App\Brand::orderBy('name', 'ASC')->get() as $brand)

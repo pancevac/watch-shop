@@ -25,6 +25,7 @@ Route::get('/compare/{id}', 'CompareController@compare')->name('compare');
 // Shop
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 Route::get('/shop/{slug}', 'ShopController@brand')->name('shop.brand');
+Route::get('/search', 'ShopController@search')->name('shop.search');
 
 Route::post('/comment/{id}', 'CommentsController@comment')->name('comment');
 
