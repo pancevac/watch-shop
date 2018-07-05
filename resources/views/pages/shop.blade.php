@@ -140,7 +140,7 @@
                                     <!-- Single Recommended Product -->
                                     <div class="single-recommended-product d-flex mb-30">
                                         <div class="single-recommended-thumb mr-3">
-                                            <img src="{{ asset($product->image) }}" alt="">
+                                            <img src="{{ productImage($product->image) }}" alt="">
                                         </div>
                                         <div class="single-recommended-desc">
                                             <h6>{{ $product->name }}</h6>
@@ -170,7 +170,7 @@
                                     <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.{{ $dataDelay }}s">
                                         <!-- Product Image -->
                                         <div class="product-img">
-                                            <img src="{{ asset($product->image) }}" alt="">
+                                            <img src="{{ productImage($product->image) }}" alt="">
                                             <div class="product-quicview">
                                                 <a href="#" data-toggle="modal" data-id="{{ $product->id }}" data-target="#quickview"><i class="ti-plus"></i></a>
                                             </div>
@@ -224,12 +224,13 @@
                 // Get product ID from data-id
                 var id = button.data('id');
                 var baseUrl = '{{ asset('/') }}';
+                var imgUrl = '{{ url('/storage') }}/';
                 if (id) {
                     $.ajax({
                         method: 'GET',
                         url: '{{ url('product') }}/' + id,
                         success: function (product) {
-                            $('#modal-image').attr('src', baseUrl + product.image);
+                            $('#modal-image').attr('src', imgUrl + product.image);
                             $('#modal-title').text(product.name);
                             $('#modal-description').text(product.description);
                             $('#modal-price').text('$'+ product.price);

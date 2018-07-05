@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Proba')
+@section('title', $product->name)
 
 @section('content')
 
@@ -15,37 +15,29 @@
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
                             <ol class="carousel-indicators">
-                                <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/product-9.jpg);">
+                                <li class="active" data-target="#product_details_slider" data-slide-to="0"
+                                    style="background-image: url({{ productImage($product->image) }});">
                                 </li>
-                                <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/product-2.jpg);">
-                                </li>
-                                <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/product-3.jpg);">
-                                </li>
-                                <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/product-4.jpg);">
-                                </li>
+                                @foreach(json_decode($product->gallery) as $singleImg)
+                                    <li data-target="#product_details_slider" data-slide-to="{{ $loop->iteration }}"
+                                        style="background-image: url({{ productImage($singleImg) }});">
+                                    </li>
+                                @endforeach
                             </ol>
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a class="gallery_img" href="{{ asset($product->image) }}">
-                                        <img class="d-block w-100" src="{{ asset($product->image) }}" alt="First slide">
+                                    <a class="gallery_img" href="{{ productImage($product->image) }}">
+                                        <img class="d-block w-100" src="{{ productImage($product->image) }}" alt="First slide">
                                     </a>
                                 </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="img/product-img/product-2.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-2.jpg" alt="Second slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="img/product-img/product-3.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-3.jpg" alt="Third slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="img/product-img/product-4.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-4.jpg" alt="Fourth slide">
-                                    </a>
-                                </div>
+                                @foreach(json_decode($product->gallery) as $singleImg)
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" href="{{ productImage($singleImg) }}">
+                                            <img class="d-block w-100" src="{{ productImage($singleImg) }}" alt="Second slide">
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -56,7 +48,7 @@
 
                         <h4 class="title"><a href="{{ route('shop.brand', ['slug' => $product->brand->slug]) }}">{{ ucfirst($product->brand->name) }}</a></h4>
 
-                        <p>SSE143J1 SEIKO Astron GPS Solar Dual-Time Big Date Novak Djokovic Limited Edition muški ručni sat</p>
+                        <p>{!! $product->name !!}</p>
 
                         <h4 class="price">$ {{ $product->price }}</h4>
 
@@ -210,7 +202,7 @@
                             <div class="single_gallery_item">
                                 <!-- Product Image -->
                                 <div class="product-img">
-                                    <img src="{{ asset($product->image) }}" alt="">
+                                    <img src="{{ productImage($product->image) }}" alt="">
                                     <div class="product-quicview">
                                         <a href="#" data-toggle="modal" data-id="{{ $product->id }}" data-target="#quickview"><i class="ti-plus"></i></a>
                                     </div>
@@ -249,12 +241,13 @@
                 // Get product ID from data-id
                 var id = button.data('id');
                 var baseUrl = '{{ asset('/') }}';
+                var imgUrl = '{{ url('/storage') }}/';
                 if (id) {
                     $.ajax({
                         method: 'GET',
                         url: '{{ url('product') }}/' + id,
                         success: function (product) {
-                            $('#modal-image').attr('src', baseUrl + product.image);
+                            $('#modal-image').attr('src', imgUrl + product.image);
                             $('#modal-title').text(product.name);
                             $('#modal-description').text(product.description);
                             $('#modal-price').text('$'+ product.price);
