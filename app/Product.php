@@ -27,6 +27,16 @@ class Product extends Model
         return $this->belongsToMany(Order::class)->withPivot('quantity', 'price', 'percent_off');
     }
 
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', 1);
+    }
+
+    public function scopeStock($query)
+    {
+        return $query->where('stock', 1);
+    }
+
     public static function getRandom($pagination, $min = null, $max = null)
     {
         $query = self::inRandomOrder();
@@ -46,5 +56,10 @@ class Product extends Model
         }
 
         return $query->orderBy('updated_at')->paginate($paginate);
+    }
+
+    public static function getFeatured($take)
+    {
+        return self::with('brand')->featured()->stock()->inRandomOrder()->take($take)->get();
     }
 }

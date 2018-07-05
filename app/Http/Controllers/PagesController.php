@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,10 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        $banners = Banner::getBanner();
+        //dd($banners);
+        $products = Product::getFeatured(20);
+        return view('pages.home', compact('banners', 'products'));
     }
 
     public function show($brandSlug, $Productslug)

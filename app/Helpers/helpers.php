@@ -21,3 +21,13 @@ function newProducts($time)
         return true;
     }
 }
+
+function bannerLink($banner)
+{
+    if ($banner->brand) {
+        return route('shop.brand', ['slug' => $banner->brand->slug]);
+    }
+    else {
+        return route('pages.show', ['brand' => $banner->brand->slug, 'slug' => $banner->product->slug]);
+    }
+}
