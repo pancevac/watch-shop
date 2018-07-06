@@ -68,3 +68,10 @@ Route::get('{brand}/{slug}', 'PagesController@show')->name('pages.show');
 Route::get('/', 'PagesController@index')->name('/');
 
 Route::get('/test', 'CartsController@test');
+
+// Reservations
+Route::middleware('auth')->group(function () {
+    Route::get('reservations', 'ReservationsController@showForm')->name('reservation.form');
+    Route::post('reservations/checkDate', 'ReservationsController@checkDate')->name('reservation.check');
+    Route::post('reservations/reserves', 'ReservationsController@reserves')->name('reservation.reserves');
+});
