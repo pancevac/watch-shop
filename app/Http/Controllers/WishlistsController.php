@@ -126,7 +126,7 @@ class WishlistsController extends Controller
 
     public function destroyAll()
     {
-        if (!Cart::instance('wishlist')->restore(Auth::user()->id)) {
+        if (Cart::instance('wishlist')->restore(Auth::user()->id)) {
             return back();
         }
         Cart::instance('wishlist')->restore(Auth::user()->id);

@@ -18,6 +18,10 @@ class CartsController extends Controller
     public function index()
     {
         $cartItems = Cart::instance('shopping')->content();
+        // Check if user have products in cart
+        if ($cartItems->isEmpty()) {
+            return back();
+        }
         return view('pages.cart', [
             'cartItems' => $cartItems,
             'newTax' => self::calculateCoupon()->get('newTax'),

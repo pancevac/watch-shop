@@ -12,13 +12,13 @@ class OrderProduct extends Model
 
     public static function getTopSales($limit, $brand_slug = null) {
 
-        $query = self::select('products.*', \DB::raw('COUNT(order_product.product_id) AS product_count'))
-            ->join('products', 'order_product.product_id', '=', 'products.id');
+        $query = self::select('products.*', 'brands.slug AS brand_slug', \DB::raw('COUNT(order_product.product_id) AS product_count'))
+            ->join('products', 'order_product.product_id', '=', 'products.id')
+            ->join('brands', 'products.brand_id', '=', 'brands.id');
 
-            if ($brand_slug) {
-                $query->join('brands', 'products.brand_id', '=', 'brands.id')
-                    ->where('brands.slug', $brand_slug);
-            }
+        if ($brand_slug) {
+            $query->where('brands.slug', $brand_slug);
+        }
 
             $recommended = $query->groupBy('order_product.product_id')
             ->orderBy('product_count', 'DESC')

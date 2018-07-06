@@ -20,8 +20,12 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        $countries = Country::all();
         $cartItems = Cart::instance('shopping')->content();
+        // Check if user have products in cart
+        if ($cartItems->isEmpty()) {
+            return back();
+        }
+        $countries = Country::all();
         return view('pages.checkout', [
             'countries' => $countries,
             'cartItems' => $cartItems,

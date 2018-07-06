@@ -112,10 +112,16 @@
                                     <!-- Single Recommended Product -->
                                     <div class="single-recommended-product d-flex mb-30">
                                         <div class="single-recommended-thumb mr-3">
-                                            <img src="{{ productImage($product->image) }}" alt="">
+                                            <a href="{{ route('pages.show', [
+                                                'brand' => $product->brand_slug,
+                                                 'slug' => $product->slug
+                                             ]) }}"><img src="{{ productImage($product->image) }}" alt=""></a>
                                         </div>
                                         <div class="single-recommended-desc">
-                                            <h6>{{ $product->name }}</h6>
+                                            <h6><a href="{{ route('pages.show', [
+                                                'brand' => $product->brand_slug,
+                                                'slug' => $product->slug
+                                            ]) }}">{{ $product->name }}</a></h6>
                                             <p>$ {{ $product->price }}</p>
                                         </div>
                                     </div>
