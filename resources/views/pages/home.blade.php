@@ -66,16 +66,7 @@
             </div>
         </div>
 
-        <div class="karl-projects-menu mb-100">
-            <div class="text-center portfolio-menu">
-                <button class="btn active" data-filter="*">ALL</button>
-                <button class="btn" data-filter=".festina">FESTINA</button>
-                <button class="btn" data-filter=".fossil">FOSSIL</button>
-                <button class="btn" data-filter=".g-shock">G-SHOCK</button>
-                <button class="btn" data-filter=".diesel">DIESEL</button>
-                <button class="btn" data-filter=".emperio">EMPERIO</button>
-            </div>
-        </div>
+        {{ menu('portfolio_menu', 'components.portfolio_menu') }}
 
         <div class="container">
             <div class="row karl-new-arrivals">
