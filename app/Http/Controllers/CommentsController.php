@@ -18,7 +18,7 @@ class CommentsController extends Controller
         $user = User::find(Auth::user()->id);
 
         // Check if user is admin
-        //$user->isAdmin = $user->role->name === 'admin' ? true : false;
+        $user->isAdmin = $user->role->name === 'admin' ? true : false;
 
         // Store comment
         try {

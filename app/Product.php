@@ -10,7 +10,7 @@ class Product extends Model
     use Commentable;
 
     protected $canBeRated = true;
-    protected $mustBeApproved = false;
+    protected $mustBeApproved = true;
 
     public function brand()
     {

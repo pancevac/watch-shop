@@ -32,5 +32,9 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->isAdmin;
     }*/
+    public function isAdmin()
+    {
+        return $this->isAdmin;
+    }
 
 }

@@ -19,7 +19,13 @@ class PagesController extends Controller
     public function show($brandSlug, $Productslug)
     {
         // Eager load product with relationships
-        $product = Product::with(['brand', 'comments.commented'])->whereHas('brand', function ($query) use ($brandSlug) {
+        $product = Product::with([
+            'brand',
+            'comments' => function ($comments) {
+                $comments->where('approved', 1);  // only show approved comments
+            },
+            'comments.commented'
+        ])->whereHas('brand', function ($query) use ($brandSlug) {
             $query->where('slug', $brandSlug);
         })->where('slug', $Productslug)->first();
         if (empty($product)) {
